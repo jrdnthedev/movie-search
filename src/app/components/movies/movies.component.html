@@ -1,0 +1,35 @@
+<div>
+  <p>movies works!</p>
+  <a routerLink="/" routerLinkActive="active" ariaCurrentWhenActive="page"
+    >Home Page</a
+  >
+</div>
+
+<div>
+  <label for="movie-search">search for movie</label>
+  <input
+    type="search"
+    name="movie-search"
+    id="movie-search"
+    placeholder="search for movie title"
+    #searchBox
+    (change)="searchMovies(searchBox.value)"
+  />
+</div>
+
+@if(movie) {
+<div>
+  <h2>Search Results</h2>
+  <div>
+    <h3>{{ movie.Title }}</h3>
+    <p>{{ movie.Year }}</p>
+    <p>{{ movie.Plot }}</p>
+    <img [src]="movie.Poster" [alt]="movie.Title + ' Movie Poster'" />
+  </div>
+</div>
+} @else {
+<div>
+  <h2>Search Results</h2>
+  <p>No movie found</p>
+</div>
+}

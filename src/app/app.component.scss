@@ -1,0 +1,28 @@
+main {
+  flex: 1 0 auto;
+  padding: 0 10px;
+}
+
+footer {
+  flex-shrink: 0;
+}
+
+#wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+header,
+footer {
+  background-color: var(--secondary-color);
+  color: white;
+  padding: 20px 10px;
+}
+
+header {
+  text-align: center;
+  font-size: 1.5em;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+}
