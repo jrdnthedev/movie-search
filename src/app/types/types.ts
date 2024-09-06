@@ -25,3 +25,14 @@ export type Movie = {
   Website: string;
   Response: string;
 };
+
+export type List = {
+  id: number;
+  name: string;
+  dateCreated: Date;
+  items: Movie[];
+};
+
+export type Lists = {
+  items: List[];
+};

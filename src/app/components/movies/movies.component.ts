@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { RouterOutlet } from '@angular/router';
 import { MoviesService } from '../../core/services/movies/movies.service';
 import { filter, SubscriptionLike } from 'rxjs';
 import { Movie } from '../../types/types';
@@ -7,7 +7,7 @@ import { Movie } from '../../types/types';
 @Component({
   selector: 'app-movies',
   standalone: true,
-  imports: [RouterOutlet, RouterLink, RouterLinkActive],
+  imports: [RouterOutlet],
   templateUrl: './movies.component.html',
   styleUrl: './movies.component.scss',
 })
@@ -27,6 +27,7 @@ export class MoviesComponent {
         .getMovies(title)
         .pipe(filter((data: Movie) => data.Response === 'True'))
         .subscribe((data: Movie) => {
+          console.log('Movies', JSON.stringify(data));
           this.movie = data;
         })
     );

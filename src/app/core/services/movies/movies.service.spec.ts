@@ -44,6 +44,7 @@ describe('MoviesService', () => {
   const movieTitle = 'titanic';
   const apiKey = 'a658a848';
   const imdbId = 'tt0120338';
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],

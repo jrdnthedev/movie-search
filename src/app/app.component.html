@@ -1,6 +1,26 @@
 <div id="wrapper">
   <header>{{ title }} app</header>
   <main class="main">
+    <div>
+      <ul>
+        <li>
+          <a
+            routerLink="/"
+            routerLinkActive="active"
+            ariaCurrentWhenActive="page"
+            >Home Page</a
+          >
+        </li>
+        <li>
+          <a
+            routerLink="/movies"
+            routerLinkActive="active"
+            ariaCurrentWhenActive="page"
+            >Movie Page</a
+          >
+        </li>
+      </ul>
+    </div>
     <router-outlet />
   </main>
   <footer>footer</footer>

@@ -1,12 +1,4 @@
-<div>
-  <p>movies works!</p>
-  <a routerLink="/" routerLinkActive="active" ariaCurrentWhenActive="page"
-    >Home Page</a
-  >
-</div>
-
-<div>
-  <label for="movie-search">search for movie</label>
+<div id="search-wrapper">
   <input
     type="search"
     name="movie-search"
@@ -15,21 +7,32 @@
     #searchBox
     (change)="searchMovies(searchBox.value)"
   />
+  <span class="focus-border"></span>
 </div>
 
 @if(movie) {
-<div>
-  <h2>Search Results</h2>
+<div id="movie-details">
   <div>
     <h3>{{ movie.Title }}</h3>
-    <p>{{ movie.Year }}</p>
-    <p>{{ movie.Plot }}</p>
     <img [src]="movie.Poster" [alt]="movie.Title + ' Movie Poster'" />
+  </div>
+  <div>
+    <p>{{ movie.Plot }}</p>
+    <p>Released: {{ movie.Released }}</p>
+    <p>Genre: {{ movie.Genre }}</p>
+    <p>Rated: {{ movie.Rated }}</p>
+    <p>Director: {{ movie.Director }}</p>
+    <p>Actors: {{ movie.Actors }}</p>
+    <p>Runtime: {{ movie.Runtime }}</p>
+    <p>Language: {{ movie.Language }}</p>
+    <p>Country: {{ movie.Country }}</p>
+    <p>Awards: {{ movie.Awards }}</p>
+    <p>Box Office: {{ movie.BoxOffice }}</p>
+    <p>IMDB Rating: {{ movie.imdbRating }}</p>
   </div>
 </div>
 } @else {
 <div>
-  <h2>Search Results</h2>
   <p>No movie found</p>
 </div>
 }
