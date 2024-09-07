@@ -15,6 +15,7 @@
   <div>
     <h3>{{ movie.Title }}</h3>
     <img [src]="movie.Poster" [alt]="movie.Title + ' Movie Poster'" />
+    <button (click)="test()">add to my list</button>
   </div>
   <div>
     <p>{{ movie.Plot }}</p>

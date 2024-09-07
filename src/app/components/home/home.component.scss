@@ -1,0 +1,7 @@
+#container {
+  display: flex;
+  & > section {
+    flex: 1;
+    padding-right: 10px;
+  }
+}

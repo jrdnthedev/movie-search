@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, ViewContainerRef } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { MoviesService } from '../../core/services/movies/movies.service';
 import { filter, SubscriptionLike } from 'rxjs';
 import { Movie } from '../../types/types';
+import { StoreService } from '../../core/services/store/store.service';
+import { AddToListComponent } from '../../core/components/add-to-list/add-to-list.component';
 
 @Component({
   selector: 'app-movies',
@@ -14,7 +16,12 @@ import { Movie } from '../../types/types';
 export class MoviesComponent {
   subscription: SubscriptionLike[] = [];
   movie!: Movie;
-  constructor(private movies: MoviesService) {}
+
+  constructor(
+    private movies: MoviesService,
+    private store: StoreService,
+    private vcr: ViewContainerRef
+  ) {}
 
   ngOnInit() {
     console.log('MoviesComponent initialized');
@@ -31,6 +38,16 @@ export class MoviesComponent {
           this.movie = data;
         })
     );
+  }
+
+  test() {
+    console.log('Test');
+    this.vcr.createComponent(AddToListComponent);
+  }
+
+  addToList(listId: number) {
+    console.log('Adding to list', listId);
+    this.store.addItemToList(listId, this.movie);
   }
 
   searchMovies(text: string) {

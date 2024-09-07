@@ -8,6 +8,7 @@ import { List, Lists, Movie } from '../../../types/types';
 export class StoreService {
   private listsSubject = new BehaviorSubject<Lists>({ items: [] });
   lists$ = this.listsSubject.asObservable();
+  listId = 0;
 
   constructor() {}
 

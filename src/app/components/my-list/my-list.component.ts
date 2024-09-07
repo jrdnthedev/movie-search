@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Movie } from '../../types/types';
+import { List } from '../../types/types';
 
 @Component({
   selector: 'app-my-list',
@@ -9,5 +9,5 @@ import { Movie } from '../../types/types';
   styleUrl: './my-list.component.scss',
 })
 export class MyListComponent {
-  @Input() items: Movie[] = [];
+  @Input() items: List[] = [];
 }
