@@ -1,0 +1,21 @@
+<dialog>
+  <header>
+    <h2>Add to List</h2>
+    <button (click)="closeDialog()">X</button>
+  </header>
+  <fieldset>
+    <legend>Add to List</legend>
+    @for(list of myLists; track $index) {
+    <div>
+      <input
+        type="checkbox"
+        [id]="list.name + $index"
+        [name]="list.name + $index"
+        [value]="list.id"
+        (change)="test(list.id)"
+      />
+      <label [for]="list.name + $index">{{ list.name }}</label>
+    </div>
+    }
+  </fieldset>
+</dialog>
