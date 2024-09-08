@@ -30,8 +30,8 @@ export class AddToListComponent {
       this.selectedItems = this.selectedItems.filter((item) => item !== id);
     } else {
       this.selectedItems.push(id);
-      console.log('Test', this.selectedItems, this.movie);
     }
+    console.log('Test', this.selectedItems, this.movie);
   }
 
   add() {
