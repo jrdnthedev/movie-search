@@ -40,14 +40,9 @@ export class MoviesComponent {
     );
   }
 
-  test() {
-    console.log('Test');
-    this.vcr.createComponent(AddToListComponent);
-  }
-
-  addToList(listId: number) {
-    console.log('Adding to list', listId);
-    this.store.addItemToList(listId, this.movie);
+  addToList() {
+    const ref = this.vcr.createComponent(AddToListComponent);
+    ref.setInput('movie', this.movie);
   }
 
   searchMovies(text: string) {

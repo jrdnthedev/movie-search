@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { List } from '../../../types/types';
+import { Component, Input } from '@angular/core';
+import { List, Movie } from '../../../types/types';
 import { StoreService } from '../../services/store/store.service';
 
 @Component({
@@ -12,6 +12,7 @@ import { StoreService } from '../../services/store/store.service';
 export class AddToListComponent {
   myLists: List[] = [];
   selectedItems: number[] = [];
+  @Input() movie!: Movie;
 
   constructor(private store: StoreService) {}
 
@@ -25,8 +26,20 @@ export class AddToListComponent {
   }
 
   test(id: number) {
-    this.selectedItems.push(id);
-    console.log('Test', this.selectedItems);
+    if (this.selectedItems.includes(id)) {
+      this.selectedItems = this.selectedItems.filter((item) => item !== id);
+    } else {
+      this.selectedItems.push(id);
+      console.log('Test', this.selectedItems, this.movie);
+    }
+  }
+
+  add() {
+    this.selectedItems.forEach((id) => {
+      this.store.addItemToList(id, this.movie);
+    });
+    this.selectedItems = [];
+    this.closeDialog();
   }
 
   closeDialog() {
