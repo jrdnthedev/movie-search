@@ -1,10 +1,10 @@
-import { Component, ViewContainerRef } from '@angular/core';
+import { Component, Input, ViewContainerRef } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { MoviesService } from '../../core/services/movies/movies.service';
+import { MoviesService } from '../../services/movies/movies.service';
 import { filter, SubscriptionLike } from 'rxjs';
-import { List, Movie } from '../../types/types';
-import { StoreService } from '../../core/services/store/store.service';
-import { AddToListComponent } from '../../core/components/add-to-list/add-to-list.component';
+import { List, Movie } from '../../../types/types';
+import { StoreService } from '../../services/store/store.service';
+import { AddToListComponent } from '../add-to-list/add-to-list.component';
 
 @Component({
   selector: 'app-movies',
@@ -17,6 +17,7 @@ export class MoviesComponent {
   subscription: SubscriptionLike[] = [];
   movie!: Movie;
   myLists: List[] = [];
+  @Input() movieTitle = '';
 
   constructor(
     private movies: MoviesService,
@@ -26,23 +27,11 @@ export class MoviesComponent {
 
   ngOnInit() {
     console.log('MoviesComponent initialized');
-  }
-
-  ngAfterViewInit() {
     this.getLists();
   }
 
-  getMovies(title: string) {
-    console.log('Getting movies');
-    this.subscription.push(
-      this.movies
-        .getMovies(title)
-        .pipe(filter((data: Movie) => data.Response === 'True'))
-        .subscribe((data: Movie) => {
-          console.log('Movies', JSON.stringify(data));
-          this.movie = data;
-        })
-    );
+  ngOnChanges() {
+    this.searchMovies(this.movieTitle);
   }
 
   addToList(data: Movie) {
@@ -57,7 +46,14 @@ export class MoviesComponent {
 
   searchMovies(text: string) {
     console.log('Searching movies', text);
-    this.getMovies(text);
+    this.subscription.push(
+      this.movies
+        .getMovies(text)
+        .pipe(filter((data: Movie) => data.Response === 'True'))
+        .subscribe((data: Movie) => {
+          this.movie = data;
+        })
+    );
   }
 
   getLists() {

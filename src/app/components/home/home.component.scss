@@ -19,7 +19,7 @@ aside {
   & form {
     display: flex;
     flex-direction: column;
-    & input {
+    & app-search {
       margin-bottom: 10px;
     }
   }

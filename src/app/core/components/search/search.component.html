@@ -1,0 +1,12 @@
+<div id="search-wrapper">
+  <input
+    type="search"
+    name="search-text"
+    id="search-text"
+    class="input"
+    [placeholder]="placeholderText"
+    #searchBox
+    (change)="searchText.emit(searchBox.value)"
+  />
+  <span class="focus-border"></span>
+</div>

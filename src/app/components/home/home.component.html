@@ -14,20 +14,11 @@
     <div>
       <h2>Create List</h2>
       <div>
-        <form
-          #listForm="ngForm"
-          (ngSubmit)="createList(listName.value, listForm)"
-        >
-          <input
-            type="text"
-            id="listName"
-            name="listName"
-            class="input"
-            #listName="ngModel"
-            ngModel
-            required
-            placeholder="enter a title"
-          />
+        <form #listForm="ngForm" (ngSubmit)="createList(searchText, listForm)">
+          <app-search
+            (searchText)="getSearchText($event)"
+            [placeholderText]="'enter movie title'"
+          ></app-search>
           <button [disabled]="listForm.invalid" type="submit">
             Create New List
           </button>

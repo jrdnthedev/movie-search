@@ -5,17 +5,19 @@ import { StoreService } from '../../core/services/store/store.service';
 import { FormsModule, NgForm } from '@angular/forms';
 import { List } from '../../types/types';
 import { SubscriptionLike } from 'rxjs';
+import { SearchComponent } from '../../core/components/search/search.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RouterOutlet, MyListComponent, FormsModule],
+  imports: [RouterOutlet, MyListComponent, FormsModule, SearchComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
 export class HomeComponent {
   list: List[] = [];
   subscription!: SubscriptionLike;
+  searchText = '';
 
   constructor(private store: StoreService) {}
 
@@ -27,6 +29,11 @@ export class HomeComponent {
     });
   }
 
+  ngOnChanges() {}
+
+  getSearchText(text: string) {
+    this.searchText = text;
+  }
   createList(name: string, form: NgForm) {
     if (name)
       this.store.addList({

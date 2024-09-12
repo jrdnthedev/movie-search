@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { MoviesComponent } from './movies.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { MoviesService } from '../../core/services/movies/movies.service';
+import { MoviesService } from '../../services/movies/movies.service';
 import { of } from 'rxjs';
 
 describe('MoviesComponent', () => {
