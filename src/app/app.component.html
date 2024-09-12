@@ -7,6 +7,7 @@
           <a
             routerLink="/"
             routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
             ariaCurrentWhenActive="page"
             >Home Page</a
           >
@@ -15,8 +16,18 @@
           <a
             routerLink="/movies"
             routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
             ariaCurrentWhenActive="page"
             >Movie Page</a
+          >
+        </li>
+        <li>
+          <a
+            routerLink="/lists"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            ariaCurrentWhenActive="page"
+            >Lists Page</a
           >
         </li>
       </ul>

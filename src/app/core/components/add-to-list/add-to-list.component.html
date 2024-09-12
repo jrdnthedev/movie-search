@@ -12,13 +12,13 @@
         [id]="list.name + $index"
         [name]="list.name + $index"
         [value]="list.id"
-        (change)="test(list.id)"
+        (change)="setSelectedItems($event)"
       />
       <label [for]="list.name + $index">{{ list.name }}</label>
     </div>
     }
   </fieldset>
   <div>
-    <button (click)="add()">Add Item(s)</button>
+    <button (click)="addItemToList()">Add Item(s)</button>
   </div>
 </dialog>

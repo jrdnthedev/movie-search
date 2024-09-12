@@ -1,0 +1,19 @@
+<div id="container">
+  @for(item of list; track $index){
+  <div>
+    <h3>{{ item.name }}</h3>
+    <p>Size: {{ item.items.length }}</p>
+    <ul>
+      <h3>Items:</h3>
+      @for(movie of item.items; track $index){
+      <li>
+        {{ movie.Title }}
+        <span
+          ><button (click)="deleteItem(item.id, movie.Title)">X</button></span
+        >
+      </li>
+      }
+    </ul>
+  </div>
+  }
+</div>

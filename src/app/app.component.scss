@@ -20,9 +20,27 @@ footer {
   padding: 20px 10px;
 }
 
-header {
-  text-align: center;
-  font-size: 1.5em;
+header,
+footer {
   text-transform: uppercase;
-  letter-spacing: 4px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  li {
+    padding: 10px;
+    display: inline-block;
+    &:last-child {
+      border-bottom: none;
+    }
+    a {
+      color: var(--secondary-color);
+      font-style: italic;
+      text-decoration: none;
+      &.active {
+        text-decoration: underline;
+      }
+    }
+  }
 }

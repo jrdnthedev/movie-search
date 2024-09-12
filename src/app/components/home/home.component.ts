@@ -4,6 +4,7 @@ import { MyListComponent } from '../my-list/my-list.component';
 import { StoreService } from '../../core/services/store/store.service';
 import { FormsModule, NgForm } from '@angular/forms';
 import { List } from '../../types/types';
+import { SubscriptionLike } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -14,12 +15,13 @@ import { List } from '../../types/types';
 })
 export class HomeComponent {
   list: List[] = [];
+  subscription!: SubscriptionLike;
 
   constructor(private store: StoreService) {}
 
   ngOnInit() {
     console.log('Home component initialized');
-    this.store.getLists().subscribe((lists) => {
+    this.subscription = this.store.getLists().subscribe((lists) => {
       console.log('Lists: ', lists.items);
       this.list = lists.items;
     });
@@ -34,5 +36,10 @@ export class HomeComponent {
         items: [],
       });
     form.reset();
+  }
+
+  ngOnDestroy() {
+    console.log('Home component destroyed');
+    this.subscription.unsubscribe();
   }
 }

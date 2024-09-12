@@ -22,10 +22,11 @@
             type="text"
             id="listName"
             name="listName"
+            class="input"
             #listName="ngModel"
             ngModel
             required
-            placeholder="enter a title to create a new list"
+            placeholder="enter a title"
           />
           <button [disabled]="listForm.invalid" type="submit">
             Create New List
