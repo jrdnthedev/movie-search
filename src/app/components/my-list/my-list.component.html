@@ -1,6 +1,9 @@
 @for(item of items; track $index) {
 <div>
   <h3>{{ item.name }}</h3>
-  <p>Size: {{ item.items.length }}</p>
+  <p>
+    Size: {{ item.items.length
+    }}<span><button (click)="deleteList(item.id)">X</button></span>
+  </p>
 </div>
 }

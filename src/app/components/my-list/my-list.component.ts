@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { List } from '../../types/types';
+import { StoreService } from '../../core/services/store/store.service';
 
 @Component({
   selector: 'app-my-list',
@@ -10,4 +11,9 @@ import { List } from '../../types/types';
 })
 export class MyListComponent {
   @Input() items: List[] = [];
+
+  constructor(private store: StoreService) {}
+  deleteList(listId: number) {
+    this.store.removeList(listId);
+  }
 }
