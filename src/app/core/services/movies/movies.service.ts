@@ -11,11 +11,11 @@ export class MoviesService {
 
   getMovies(title: string): Observable<any> {
     return this.http.get(
-      `http://www.omdbapi.com/?apikey=${this.key}&t=${title}`
+      `https://www.omdbapi.com/?apikey=${this.key}&t=${title}`
     );
   }
 
   getMoviesByImdbId(id: string): Observable<any> {
-    return this.http.get(`http://www.omdbapi.com/?apikey=${this.key}&i=${id}`);
+    return this.http.get(`https://www.omdbapi.com/?apikey=${this.key}&i=${id}`);
   }
 }
