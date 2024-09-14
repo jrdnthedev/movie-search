@@ -1,0 +1,54 @@
+span img {
+  height: 60px;
+  width: 60px;
+}
+
+.card {
+  padding: 10px;
+  margin: 10px;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  h3 {
+    font-size: 1.2em;
+    margin-top: 0;
+    text-transform: capitalize;
+  }
+  p {
+    font-size: 1em;
+    margin: 0;
+  }
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  li {
+    display: flex;
+    align-items: center;
+    p {
+      flex: 1;
+      margin: 0 10px;
+    }
+  }
+}
+
+#container {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+@media screen and (min-width: 768px) {
+  .card {
+    width: calc(50% - 42px);
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .card {
+    width: calc(33.3333333333% - 42px);
+  }
+}

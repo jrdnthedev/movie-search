@@ -17,7 +17,7 @@
         <form #listForm="ngForm" (ngSubmit)="createList(searchText, listForm)">
           <app-search
             (searchText)="getSearchText($event)"
-            [placeholderText]="'enter movie title'"
+            [placeholderText]="'enter list title'"
           ></app-search>
           <button [disabled]="listForm.invalid" type="submit">
             Create New List

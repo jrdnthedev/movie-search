@@ -49,7 +49,16 @@ export class MoviesComponent {
     this.subscription.push(
       this.movies
         .getMovies(text)
-        .pipe(filter((data: Movie) => data.Response === 'True'))
+        .pipe(
+          filter((data: Movie) => {
+            if (data.Response === 'True') {
+              return true;
+            } else {
+              console.log('No movies found');
+              return false;
+            }
+          })
+        )
         .subscribe((data: Movie) => {
           this.movie = data;
         })

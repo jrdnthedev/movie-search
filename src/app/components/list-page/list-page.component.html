@@ -1,19 +1,26 @@
 <div id="container">
   @for(item of list; track $index){
-  <div>
+  <div class="card">
     <h3>{{ item.name }}</h3>
     <p>Size: {{ item.items.length }}</p>
+    @if(item.items.length > 0){
     <ul>
       <h3>Items:</h3>
       @for(movie of item.items; track $index){
       <li>
-        {{ movie.Title }}
         <span
-          ><button (click)="deleteItem(item.id, movie.Title)">X</button></span
+          ><img [src]="movie.Poster" [alt]="movie.Title + ' Movie Poster'"
+        /></span>
+        <p>{{ movie.Title }}</p>
+        <span
+          ><button (click)="deleteItem(item.id, movie.Title)" class="close">
+            X
+          </button></span
         >
       </li>
       }
     </ul>
+    }
   </div>
   }
 </div>

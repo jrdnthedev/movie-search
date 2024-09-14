@@ -38,6 +38,13 @@ button {
     background-color: rgba(51, 51, 51, 0.7);
     cursor: not-allowed;
   }
+  &.close {
+    padding: 3px 6px;
+    color: #fff;
+    background-color: var(--danger-color);
+    font-weight: bold;
+    font-size: 13px;
+  }
 }
 
 .input {
