@@ -2,10 +2,8 @@
   @for(item of list; track $index){
   <div class="card">
     <h3>{{ item.name }}</h3>
-    <p>Size: {{ item.items.length }}</p>
     @if(item.items.length > 0){
     <ul>
-      <h3>Items:</h3>
       @for(movie of item.items; track $index){
       <li>
         <span
@@ -13,7 +11,7 @@
         /></span>
         <p>{{ movie.Title }}</p>
         <span
-          ><button (click)="deleteItem(item.id, movie.Title)" class="close">
+          ><button (click)="deleteItem(item.id, $index)" class="close">
             X
           </button></span
         >

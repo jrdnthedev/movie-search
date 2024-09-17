@@ -3,3 +3,12 @@ p {
   display: flex;
   align-items: center;
 }
+
+.card {
+  padding: 20px;
+  margin: 20px 0;
+  background: rgba(198, 193, 204, 0.1);
+  border-radius: 5px;
+  color: var(--alternate-color);
+  transition: all 0.3s ease;
+}

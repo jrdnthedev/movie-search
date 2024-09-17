@@ -1,26 +1,30 @@
 @if(movie) {
 <div id="movie-details">
-  <div>
-    <h3>{{ movie.Title }}</h3>
-    <img [src]="movie.Poster" [alt]="movie.Title + ' Movie Poster'" />
-    <div>
-      <button (click)="addToList(movie)">add to my list</button>
-    </div>
-  </div>
-  <div>
-    <p>{{ movie.Plot }}</p>
-    <p>Released: {{ movie.Released }}</p>
-    <p>Genre: {{ movie.Genre }}</p>
-    <p>Rated: {{ movie.Rated }}</p>
-    <p>Director: {{ movie.Director }}</p>
-    <p>Actors: {{ movie.Actors }}</p>
-    <p>Runtime: {{ movie.Runtime }}</p>
-    <p>Language: {{ movie.Language }}</p>
-    <p>Country: {{ movie.Country }}</p>
-    <p>Awards: {{ movie.Awards }}</p>
-    <p>Box Office: {{ movie.BoxOffice }}</p>
-    <p>IMDB Rating: {{ movie.imdbRating }}</p>
-  </div>
+  <figure>
+    <div
+      [style]="'background-image: url(' + movie.Poster + ')'"
+      id="movie-poster"
+    ></div>
+    <figcaption>
+      <div>
+        <button (click)="addToList(movie)" class="Parallelogram">
+          <span>add to my list</span>
+        </button>
+      </div>
+      <h4>{{ movie.Title }}</h4>
+      <p>{{ movie.Year }}</p>
+      <p>{{ movie.Rated }}</p>
+      <p>{{ movie.Runtime }}</p>
+      <p>{{ movie.Genre }}</p>
+      <p>{{ movie.Director }}</p>
+      <p>{{ movie.Actors }}</p>
+      <p>{{ movie.Language }}</p>
+      <p>{{ movie.Country }}</p>
+      <p>{{ movie.Awards }}</p>
+      <p>{{ movie.BoxOffice }}</p>
+      <p>{{ movie.imdbRating }}</p>
+    </figcaption>
+  </figure>
 </div>
 } @else {
 <div>

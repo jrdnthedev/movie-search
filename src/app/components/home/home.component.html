@@ -12,22 +12,19 @@
   <section>Main content</section>
   <aside>
     <div>
-      <h2>Create List</h2>
-      <div>
-        <form #listForm="ngForm" (ngSubmit)="createList(searchText, listForm)">
-          <app-search
-            (searchText)="getSearchText($event)"
-            [placeholderText]="'enter list title'"
-          ></app-search>
-          <button [disabled]="listForm.invalid" type="submit">
-            Create New List
-          </button>
-        </form>
-      </div>
+      <form #listForm="ngForm" (ngSubmit)="createList(searchText, listForm)">
+        <app-search
+          (searchText)="getSearchText($event)"
+          [placeholderText]="'enter list title'"
+        ></app-search>
+        <button [disabled]="listForm.invalid" type="submit">
+          Create New List
+        </button>
+      </form>
     </div>
     @if(list.length > 0){
     <div>
-      <h2>My Lists</h2>
+      <h3>My Lists</h3>
       <app-my-list [items]="list"></app-my-list>
     </div>
     }

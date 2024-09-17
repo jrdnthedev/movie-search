@@ -36,12 +36,12 @@ export class StoreService {
     this.listsSubject.next({ items: currentLists });
   }
 
-  removeItemFromList(listId: number, itemTitle: string) {
+  removeItemFromList(listId: number, idx: number) {
     const currentLists = this.listsSubject.value.items.map((list) =>
       list.id === listId
         ? {
             ...list,
-            items: list.items.filter((item) => item.Title !== itemTitle),
+            items: list.items.filter((item, index) => index !== idx),
           }
         : list
     );

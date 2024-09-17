@@ -6,6 +6,42 @@
   }
 }
 
+#movie-poster {
+  height: 50vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: relative;
+  &::before {
+    content: "";
+    background: linear-gradient(
+      to top,
+      rgb(30, 38, 48) 2%,
+      rgba(30, 38, 48, 0.8) 100%
+    );
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+  }
+}
+
+figure {
+  margin: 0;
+  figcaption {
+    p {
+      color: var(--tertiary-color);
+      font-size: 18px;
+    }
+    h4 {
+      font-size: 20px;
+      color: var(--tertiary-color);
+      letter-spacing: 2px;
+    }
+  }
+}
+
 @media screen and (min-width: 768px) {
   #movie-details {
     flex-direction: row;

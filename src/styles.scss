@@ -15,9 +15,20 @@ app-root {
   height: 100%;
 }
 
+h3 {
+  font-size: 24px;
+  letter-spacing: 2px;
+  color: var(--tertiary-color);
+  margin-top: 0;
+  text-transform: capitalize;
+}
+
 :root {
-  --primary-color: #007bff;
-  --secondary-color: #333333;
+  --primary-color: rgb(30, 38, 48);
+  --secondary-color: rgb(75, 41, 164);
+  --tertiary-color: rgb(255, 255, 255);
+  --alternate-color: rgb(158, 158, 167);
+  --disabled-color: rgba(51, 51, 51, 0.7);
   --success-color: #28a745;
   --info-color: #17a2b8;
   --warning-color: #ffc107;
@@ -29,13 +40,17 @@ app-root {
 button {
   cursor: pointer;
   border: none;
-  background-color: var(--secondary-color);
-  color: white;
+  color: var(--tertiary-color);
   padding: 10px 20px;
   border-radius: 5px;
   font-size: 16px;
+  background-color: var(--secondary-color);
+  font-weight: 500;
+  letter-spacing: 1px;
+  border-radius: 5px;
+  text-transform: uppercase;
   &:disabled {
-    background-color: rgba(51, 51, 51, 0.7);
+    background-color: var(--disabled-color);
     cursor: not-allowed;
   }
   &.close {
@@ -45,38 +60,47 @@ button {
     font-weight: bold;
     font-size: 13px;
   }
+  // &.Parallelogram {
+  //   transform: skew(-20deg);
+  //   border-radius: unset;
+  //   span {
+  //     transform: skew(20deg);
+  //     display: inline-block;
+  //     text-transform: uppercase;
+  //   }
+  // }
 }
 
-.input {
-  border: 0;
-  padding: 7px 0;
-  border-bottom: 1px solid #ccc;
-  font: 15px/24px "Lato", Arial, sans-serif;
-  letter-spacing: 1px;
-  color: #333;
-  width: 100%;
-  box-sizing: border-box;
+// .input {
+//   border: 0;
+//   padding: 7px 0;
+//   border-bottom: 1px solid #ccc;
+//   font: 15px/24px "Lato", Arial, sans-serif;
+//   letter-spacing: 1px;
+//   color: #333;
+//   width: 100%;
+//   box-sizing: border-box;
 
-  &::placeholder {
-    color: #ccc;
-    text-transform: uppercase;
-  }
-  & ~ .focus-border {
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    width: 0;
-    height: 2px;
-    background-color: var(--secondary-color);
-    transition: 0.4s;
-  }
-  &:focus {
-    outline: none;
-  }
+//   &::placeholder {
+//     color: #ccc;
+//     text-transform: uppercase;
+//   }
+//   & ~ .focus-border {
+//     position: absolute;
+//     bottom: 0;
+//     left: 50%;
+//     width: 0;
+//     height: 2px;
+//     background-color: var(--secondary-color);
+//     transition: 0.4s;
+//   }
+//   &:focus {
+//     outline: none;
+//   }
 
-  &:focus ~ .focus-border {
-    width: 100%;
-    transition: 0.4s;
-    left: 0;
-  }
-}
+//   &:focus ~ .focus-border {
+//     width: 100%;
+//     transition: 0.4s;
+//     left: 0;
+//   }
+// }

@@ -24,9 +24,9 @@ export class ListPageComponent {
     });
   }
 
-  deleteItem(id: number, title: string) {
-    console.log('Deleting item');
-    this.store.removeItemFromList(id, title);
+  deleteItem(id: number, index: number) {
+    console.log('Deleting item', index);
+    this.store.removeItemFromList(id, index);
   }
   ngOnDestroy() {
     console.log('List page component destroyed');
