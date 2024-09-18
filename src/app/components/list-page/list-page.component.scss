@@ -25,6 +25,9 @@ ul {
   li {
     display: flex;
     align-items: center;
+    padding: 10px 0;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--alternate-color);
     p {
       flex: 1;
       margin: 0 10px;

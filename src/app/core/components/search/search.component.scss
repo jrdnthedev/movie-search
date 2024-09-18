@@ -5,12 +5,15 @@
   flex-direction: column;
 }
 input {
-  padding: 8px;
+  padding: 12px;
   background-image: none;
   background: transparent;
   border: none;
+  border-bottom: 1px solid var(--tertiary-color);
   color: var(--tertiary-color);
   letter-spacing: 1px;
+  font-size: 17px;
+  text-transform: capitalize;
   &:focus {
     outline: none;
   }
