@@ -45,7 +45,7 @@ button {
   border-radius: 5px;
   font-size: 16px;
   background-color: var(--secondary-color);
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 1px;
   border-radius: 20px;
   text-transform: uppercase;
@@ -60,47 +60,4 @@ button {
     font-weight: bold;
     font-size: 13px;
   }
-  // &.Parallelogram {
-  //   transform: skew(-20deg);
-  //   border-radius: unset;
-  //   span {
-  //     transform: skew(20deg);
-  //     display: inline-block;
-  //     text-transform: uppercase;
-  //   }
-  // }
 }
-
-// .input {
-//   border: 0;
-//   padding: 7px 0;
-//   border-bottom: 1px solid #ccc;
-//   font: 15px/24px "Lato", Arial, sans-serif;
-//   letter-spacing: 1px;
-//   color: #333;
-//   width: 100%;
-//   box-sizing: border-box;
-
-//   &::placeholder {
-//     color: #ccc;
-//     text-transform: uppercase;
-//   }
-//   & ~ .focus-border {
-//     position: absolute;
-//     bottom: 0;
-//     left: 50%;
-//     width: 0;
-//     height: 2px;
-//     background-color: var(--secondary-color);
-//     transition: 0.4s;
-//   }
-//   &:focus {
-//     outline: none;
-//   }
-
-//   &:focus ~ .focus-border {
-//     width: 100%;
-//     transition: 0.4s;
-//     left: 0;
-//   }
-// }
