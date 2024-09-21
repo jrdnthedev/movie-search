@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { MoviesComponent } from '../../core/components/movies/movies.component';
 import { SearchComponent } from '../../core/components/search/search.component';
-import { Movie } from '../../types/types';
 
 @Component({
   selector: 'app-movies-page',

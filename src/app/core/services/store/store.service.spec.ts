@@ -112,7 +112,7 @@ describe('StoreService', () => {
 
   it('should remove an item by title from the specified list', () => {
     const listIdToModify = 1;
-    const itemTitleToRemove = 'Do the Right Thing';
+    const itemTitleToRemove = 1;
 
     const initialLists: List[] = [
       {

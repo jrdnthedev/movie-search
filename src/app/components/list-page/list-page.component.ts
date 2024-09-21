@@ -28,6 +28,12 @@ export class ListPageComponent {
     console.log('Deleting item', index);
     this.store.removeItemFromList(id, index);
   }
+
+  deleteList(id: number) {
+    console.log('Deleting list');
+    this.store.removeList(id);
+  }
+
   ngOnDestroy() {
     console.log('List page component destroyed');
     this.subscription.unsubscribe();

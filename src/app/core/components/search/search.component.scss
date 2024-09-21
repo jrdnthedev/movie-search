@@ -16,18 +16,22 @@ input {
   text-transform: capitalize;
   &:focus {
     outline: none;
+    border-bottom: unset;
   }
   &:visited {
     outline: none;
     background: transparent;
+    border-bottom: unset;
   }
   &:active {
     outline: none;
     background: transparent;
+    border-bottom: unset;
   }
   &:valid {
     outline: none;
     background: transparent;
+    border-bottom: unset;
   }
   &:-internal-autofill-selected {
     background-color: transparent !important;

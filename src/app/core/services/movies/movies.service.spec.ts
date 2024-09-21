@@ -65,7 +65,7 @@ describe('MoviesService', () => {
 
     // Expect an HTTP GET request to the correct URL
     const req = httpTestingController.expectOne(
-      `http://www.omdbapi.com/?apikey=${apiKey}&t=${movieTitle}`
+      `https://www.omdbapi.com/?apikey=${apiKey}&t=${movieTitle}`
     );
 
     // Ensure that it was a GET request
@@ -83,7 +83,7 @@ describe('MoviesService', () => {
 
     // Expect an HTTP GET request to the correct URL
     const req = httpTestingController.expectOne(
-      `http://www.omdbapi.com/?apikey=${apiKey}&i=${imdbId}`
+      `https://www.omdbapi.com/?apikey=${apiKey}&i=${imdbId}`
     );
 
     // Ensure that it was a GET request

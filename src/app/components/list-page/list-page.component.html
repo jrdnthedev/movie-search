@@ -2,6 +2,7 @@
   @for(item of list; track $index){
   <div class="card">
     <h3>{{ item.name }}</h3>
+    <button (click)="deleteList(item.id)" class="close">X</button>
     @if(item.items.length > 0){
     <ul>
       @for(movie of item.items; track $index){

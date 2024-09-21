@@ -22,7 +22,7 @@ export class MoviesComponent {
   constructor(
     private movies: MoviesService,
     private store: StoreService,
-    private vcr: ViewContainerRef
+    public vcr: ViewContainerRef
   ) {}
 
   ngOnInit() {

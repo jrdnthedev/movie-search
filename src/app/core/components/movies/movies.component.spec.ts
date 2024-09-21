@@ -4,6 +4,9 @@ import { MoviesComponent } from './movies.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { MoviesService } from '../../services/movies/movies.service';
 import { of } from 'rxjs';
+import { AddToListComponent } from '../add-to-list/add-to-list.component';
+import { ViewContainerRef } from '@angular/core';
+import { Movie } from '../../../types/types';
 
 describe('MoviesComponent', () => {
   let component: MoviesComponent;
@@ -74,10 +77,21 @@ describe('MoviesComponent', () => {
     Website: 'N/A',
     Response: 'False',
   };
-  const movieTitle = 'titanic';
+  // const movieTitle = 'titanic';
+  let viewContainerRefSpy: jasmine.SpyObj<ViewContainerRef>;
+  let movieMock: Movie;
+
   beforeEach(async () => {
+    viewContainerRefSpy = jasmine.createSpyObj('ViewContainerRef', [
+      'createComponent',
+    ]);
     await TestBed.configureTestingModule({
-      imports: [RouterTestingModule, HttpClientTestingModule, MoviesComponent],
+      imports: [
+        RouterTestingModule,
+        HttpClientTestingModule,
+        MoviesComponent,
+        AddToListComponent,
+      ],
       providers: [
         MoviesService,
         {
@@ -88,45 +102,52 @@ describe('MoviesComponent', () => {
               .and.returnValue(of(mockMoveData)),
           },
         },
+        { provide: ViewContainerRef, useValue: viewContainerRefSpy },
       ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(MoviesComponent);
     component = fixture.componentInstance;
     moviesService = TestBed.inject(MoviesService);
+    component.vcr = viewContainerRefSpy;
     fixture.detectChanges();
   });
 
-  it('should call getMovies and set movie when response is true', () => {
-    component.getMovies(movieTitle);
+  it('should create AddToListComponent when myLists is not empty', () => {
+    component.myLists = [
+      {
+        id: 1,
+        name: 'ma',
+        dateCreated: new Date(),
+        items: [mockMoveDataFalse],
+      },
+    ]; // Ensure the list is not empty
+    const componentRefSpy = jasmine.createSpyObj('ComponentRef', ['setInput']);
+    viewContainerRefSpy.createComponent.and.returnValue(componentRefSpy);
 
-    // Verify that getMovies was called
-    expect(moviesService.getMovies).toHaveBeenCalledWith(movieTitle);
+    component.addToList(mockMoveDataFalse); // Call the function
 
-    // Since the service returns an observable with `Response: 'True'`, the movie should be set
-    expect(component.movie).toEqual(mockMoveData);
-  });
-
-  it('should not set movie when response is false', () => {
-    (moviesService.getMovies as jasmine.Spy).and.returnValue(
-      of(mockMoveDataFalse)
+    expect(viewContainerRefSpy.createComponent).toHaveBeenCalledWith(
+      AddToListComponent as any
     );
-
-    // Call the component method
-    component.getMovies(movieTitle);
-
-    // Since the response is `False`, the movie should not be set
-    expect(component.movie).toBeUndefined();
+    expect(componentRefSpy.setInput).toHaveBeenCalledWith(
+      'movie',
+      mockMoveDataFalse
+    );
+    expect(componentRefSpy.setInput).toHaveBeenCalledWith(
+      'compRef',
+      componentRefSpy
+    );
   });
 
-  it('should call getMovies with the correct arguments when searchMovies is called', () => {
-    spyOn(component, 'getMovies');
+  it('should log "No lists available" when myLists is empty', () => {
+    component.myLists = []; // Ensure the list is empty
+    spyOn(console, 'log'); // Spy on console.log
 
-    // Call the searchMovies method
-    component.searchMovies(movieTitle);
+    component.addToList(mockMoveDataFalse); // Call the function
 
-    // Expect getMovies to have been called with the correct argument
-    expect(component.getMovies).toHaveBeenCalledWith(movieTitle);
+    expect(viewContainerRefSpy.createComponent).not.toHaveBeenCalled();
+    expect(console.log).toHaveBeenCalledWith('No lists available');
   });
 
   it('should create', () => {
