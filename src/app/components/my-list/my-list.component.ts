@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { List } from '../../types/types';
 import { StoreService } from '../../core/services/store/store.service';
 
@@ -11,8 +11,8 @@ import { StoreService } from '../../core/services/store/store.service';
 })
 export class MyListComponent {
   @Input() items: List[] = [];
+  private store = inject(StoreService);
 
-  constructor(private store: StoreService) {}
   deleteList(listId: number) {
     this.store.removeList(listId);
   }
