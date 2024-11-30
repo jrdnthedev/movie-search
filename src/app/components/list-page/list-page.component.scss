@@ -28,9 +28,11 @@ ul {
     padding: 10px 0;
     margin-bottom: 20px;
     border-bottom: 1px solid var(--alternate-color);
-    p {
+    div {
       flex: 1;
       margin: 0 10px;
+      display: flex;
+      flex-direction: column;
     }
   }
 }

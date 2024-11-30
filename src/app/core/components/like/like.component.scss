@@ -1,0 +1,14 @@
+svg {
+  fill: var(--alternate-color);
+  stroke: var(--alternate-color);
+  &.liked {
+    fill: var(--primary-color);
+    stroke: var(--primary-color);
+  }
+}
+
+.like-btn {
+  background: unset;
+  padding: 0;
+  line-height: 0px;
+}

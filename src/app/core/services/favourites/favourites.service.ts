@@ -6,7 +6,7 @@ import { List, Movie } from '../../../types/types';
   providedIn: 'root',
 })
 export class FavouritesService {
-  private favouriteSubject = new BehaviorSubject<List[]>([]);
+  private favouriteSubject = new BehaviorSubject<Movie[]>([]);
   favourites$ = this.favouriteSubject.asObservable();
 
   constructor() {}
@@ -15,23 +15,18 @@ export class FavouritesService {
     return this.favouriteSubject.value;
   }
 
-  setFavourites(favourites: List[]) {
+  setFavourites(favourites: Movie[]) {
     this.favouriteSubject.next(favourites);
   }
 
-  addFavourite(favourite: List) {
+  addFavourite(favourite: Movie) {
     const currentFavourites = this.getFavourites().concat(favourite);
     this.setFavourites(currentFavourites);
   }
 
-  removeFavourite(favouriteId: number, idx: number) {
-    const currentLists = this.favouriteSubject.value.map((favourite) =>
-      favourite.id === favouriteId
-        ? {
-            ...favourite,
-            items: favourite.items.filter((item, index) => index !== idx),
-          }
-        : favourite
+  removeFavourite(favouriteId: string) {
+    const currentLists = this.favouriteSubject.value.filter(
+      (item) => item.imdbID !== favouriteId
     );
     this.setFavourites(currentLists);
   }

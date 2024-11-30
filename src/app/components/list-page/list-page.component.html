@@ -10,7 +10,12 @@
         <span
           ><img [src]="movie.Poster" [alt]="movie.Title + ' Movie Poster'"
         /></span>
-        <p>{{ movie.Title }}</p>
+        <div>
+          <p>{{ movie.Title }}</p>
+          <span>
+            <app-like [item]="movie"></app-like>
+          </span>
+        </div>
         <span
           ><button (click)="deleteItem(item.id, $index)" class="close">
             X
