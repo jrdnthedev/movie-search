@@ -9,7 +9,7 @@ import { AddToListComponent } from '../add-to-list/add-to-list.component';
 @Component({
   selector: 'app-movies',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [],
   templateUrl: './movies.component.html',
   styleUrl: './movies.component.scss',
 })

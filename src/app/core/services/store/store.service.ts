@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { List, Lists, Movie } from '../../../types/types';
+import { List, Movie } from '../../../types/types';
 
 @Injectable({
   providedIn: 'root',
