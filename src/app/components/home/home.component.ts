@@ -10,7 +10,7 @@ import { SearchComponent } from '../../core/components/search/search.component';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RouterOutlet, MyListComponent, FormsModule, SearchComponent],
+  imports: [MyListComponent, FormsModule, SearchComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
@@ -22,19 +22,16 @@ export class HomeComponent {
   constructor(private store: StoreService) {}
 
   ngOnInit() {
-    console.log('Home component initialized');
-    this.subscription = this.store.getLists().subscribe((lists) => {
-      console.log('Lists: ', lists.items);
-      this.list = lists.items;
+    this.subscription = this.store.lists$.subscribe((lists) => {
+      this.list = lists;
     });
   }
-
-  ngOnChanges() {}
 
   getSearchText(text: string) {
     this.searchText = text;
   }
   createList(name: string, form: NgForm) {
+    console.log('Name: ', name);
     if (name)
       this.store.addList({
         id: this.store.listId++, // Increment the listId property

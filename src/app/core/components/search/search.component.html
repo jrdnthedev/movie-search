@@ -6,7 +6,7 @@
     class="input"
     [placeholder]="placeholderText"
     #searchBox
-    (change)="searchText.emit(searchBox.value)"
+    (input)="searchMovies(searchBox.value)"
   />
   <span class="focus-border"></span>
 </div>

@@ -6,38 +6,43 @@ import { List, Lists, Movie } from '../../../types/types';
   providedIn: 'root',
 })
 export class StoreService {
-  private listsSubject = new BehaviorSubject<Lists>({ items: [] });
+  private listsSubject = new BehaviorSubject<List[]>([]);
   lists$ = this.listsSubject.asObservable();
   listId = 0;
 
   constructor() {}
 
   getLists() {
-    return this.lists$.pipe();
+    return this.listsSubject.value;
+  }
+
+  setLists(lists: List[]) {
+    this.listsSubject.next(lists);
   }
 
   addList(list: List) {
-    const currentLists = this.listsSubject.value.items;
-    this.listsSubject.next({ items: [...currentLists, list] });
+    const currentLists = this.getLists().concat(list);
+    console.log('Current lists: ', currentLists);
+    this.setLists(currentLists);
   }
 
   removeList(listId: number) {
-    const currentLists = this.listsSubject.value.items.filter(
+    const currentLists = this.listsSubject.value.filter(
       (list) => list.id !== listId
     );
     // Wrap the filtered list in the Lists object structure
-    this.listsSubject.next({ items: currentLists });
+    this.setLists(currentLists);
   }
 
   addItemToList(listId: number, item: Movie) {
-    const currentLists = this.listsSubject.value.items.map((list) =>
+    const currentLists = this.listsSubject.value.map((list) =>
       list.id === listId ? { ...list, items: [...list.items, item] } : list
     );
-    this.listsSubject.next({ items: currentLists });
+    this.setLists(currentLists);
   }
 
   removeItemFromList(listId: number, idx: number) {
-    const currentLists = this.listsSubject.value.items.map((list) =>
+    const currentLists = this.listsSubject.value.map((list) =>
       list.id === listId
         ? {
             ...list,
@@ -45,6 +50,6 @@ export class StoreService {
           }
         : list
     );
-    this.listsSubject.next({ items: currentLists });
+    this.setLists(currentLists);
   }
 }

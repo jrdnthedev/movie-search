@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, output, Output } from '@angular/core';
+import { debounceTime, Subject } from 'rxjs';
 
 @Component({
   selector: 'app-search',
@@ -8,6 +9,23 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrl: './search.component.scss',
 })
 export class SearchComponent {
-  @Output() searchText = new EventEmitter<string>();
+  searchText = output<string>();
   @Input() placeholderText = 'Search movies...';
+  private searchSubject = new Subject<string>();
+
+  ngOnInit() {
+    console.log('SearchComponent initialized');
+    this.searchSubject.pipe(debounceTime(1500)).subscribe((text) => {
+      this.performSearch(text);
+    });
+  }
+
+  searchMovies(text: string) {
+    console.log('Searching movies', text);
+    this.searchSubject.next(text);
+  }
+
+  performSearch(text: string) {
+    this.searchText.emit(text);
+  }
 }

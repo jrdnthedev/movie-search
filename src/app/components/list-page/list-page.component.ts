@@ -18,9 +18,9 @@ export class ListPageComponent {
 
   ngOnInit() {
     console.log('List page component initialized');
-    this.subscription = this.store.getLists().subscribe((lists) => {
-      console.log('Lists: ', lists.items);
-      this.list = lists.items;
+    this.subscription = this.store.lists$.subscribe((lists) => {
+      console.log('Lists: ', lists);
+      this.list = lists;
     });
   }
 
