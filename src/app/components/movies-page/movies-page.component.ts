@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MoviesComponent } from '../../core/components/movies/movies.component';
 import { SearchComponent } from '../../core/components/search/search.component';
+import { debounceTime, Subject } from 'rxjs';
 
 @Component({
   selector: 'app-movies-page',
@@ -11,11 +12,20 @@ import { SearchComponent } from '../../core/components/search/search.component';
 })
 export class MoviesPageComponent {
   searchText = '';
-
+  private searchSubject = new Subject<string>();
   constructor() {}
 
-  getSearchText(text: string) {
-    console.log('Search text: ', text);
+  ngOnInit() {
+    this.searchSubject.pipe(debounceTime(1000)).subscribe((text) => {
+      this.performSearch(text);
+    });
+  }
+
+  performSearch(text: string) {
     this.searchText = text;
+  }
+
+  getSearchText(text: string) {
+    this.searchSubject.next(text);
   }
 }

@@ -46,6 +46,10 @@ export class MoviesComponent {
 
   searchMovies(text: string) {
     console.log('Searching movies', text);
+    if (!text) {
+      console.log('No text to search for');
+      return;
+    }
     this.subscription.push(
       this.movies
         .getMovies(text)

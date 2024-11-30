@@ -7,33 +7,11 @@
 input {
   padding: 12px;
   background-image: none;
-  background: transparent;
-  border: none;
-  border-bottom: 1px solid var(--tertiary-color);
-  color: var(--tertiary-color);
+  background: var(--light-color);
+  border: 1px solid var(--alternate-color);
+  color: var(--primary-color);
   letter-spacing: 1px;
   font-size: 17px;
   text-transform: capitalize;
-  &:focus {
-    outline: none;
-    border-bottom: unset;
-  }
-  &:visited {
-    outline: none;
-    background: transparent;
-    border-bottom: unset;
-  }
-  &:active {
-    outline: none;
-    background: transparent;
-    border-bottom: unset;
-  }
-  &:valid {
-    outline: none;
-    background: transparent;
-    border-bottom: unset;
-  }
-  &:-internal-autofill-selected {
-    background-color: transparent !important;
-  }
+  border-radius: 5px;
 }

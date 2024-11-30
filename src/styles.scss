@@ -15,10 +15,13 @@ app-root {
   height: 100%;
 }
 
+* {
+  box-sizing: border-box;
+}
 h3 {
   font-size: 24px;
   letter-spacing: 2px;
-  color: var(--tertiary-color);
+  color: var(--primary-color);
   margin-top: 0;
   text-transform: capitalize;
 }
@@ -60,4 +63,11 @@ button {
     font-weight: bold;
     font-size: 13px;
   }
+}
+
+.card {
+  background-color: var(--light-color);
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 16px;
 }

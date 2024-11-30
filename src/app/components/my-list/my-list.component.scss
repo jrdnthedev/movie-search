@@ -4,11 +4,24 @@ p {
   align-items: center;
 }
 
-.card {
-  padding: 20px;
-  margin: 20px 0;
-  background: rgba(198, 193, 204, 0.1);
-  border-radius: 5px;
-  color: var(--alternate-color);
-  transition: all 0.3s ease;
+ul {
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  list-style-type: none;
+  padding: 10px;
+  border-bottom: 1px solid var(--alternate-color);
+  &:last-child {
+    border-bottom: none;
+  }
+  a {
+    color: var(--alternate-color);
+    font-style: italic;
+    text-decoration: none;
+    &.active {
+      text-decoration: underline;
+    }
+  }
 }
