@@ -22,11 +22,10 @@ export class AddToListComponent {
 
   ngOnInit() {
     console.log('AddToListComponent initialized');
-    // this.subscription = this.store.getLists().subscribe((lists) => {
-    //   console.log('Lists: ', lists.items);
-    //   this.myLists = lists.items;
-    // });
-    this.myLists = this.store.getLists();
+    this.subscription = this.store.lists$.subscribe((lists) => {
+      console.log('Lists: ', lists);
+      this.myLists = lists;
+    });
     console.log(this.movie);
     document.getElementsByTagName('dialog')[0].showModal();
   }

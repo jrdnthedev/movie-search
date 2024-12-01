@@ -30,7 +30,6 @@ export class StoreService {
     const currentLists = this.listsSubject.value.filter(
       (list) => list.id !== listId
     );
-    // Wrap the filtered list in the Lists object structure
     this.setLists(currentLists);
   }
 

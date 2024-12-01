@@ -9,7 +9,27 @@
     display the list of movies by category
 -->
 <div id="container">
-  <section>Main content</section>
+  <section>
+    <h2>Main content</h2>
+
+    <div>
+      <h3>Favourites</h3>
+      @if(favourites.length > 0){
+      <div id="favourites-section">
+        @for(item of favourites; track $index){
+        <div class="card">
+          <h3>{{ item.Title }}</h3>
+          <p>{{ item.Year }}</p>
+          <p>{{ item.Genre }}</p>
+          <!-- <button (click)="removeFavourite(item)">Remove</button> -->
+        </div>
+        }
+      </div>
+      } @else {
+      <p>No favourites yet</p>
+      }
+    </div>
+  </section>
   <aside>
     <div>
       <form #listForm="ngForm" (ngSubmit)="createList(searchText, listForm)">

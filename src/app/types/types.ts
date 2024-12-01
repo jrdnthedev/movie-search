@@ -24,6 +24,7 @@ export type Movie = {
   Production: string;
   Website: string;
   Response: string;
+  favourite?: boolean;
 };
 
 export type List = {

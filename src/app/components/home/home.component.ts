@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { MyListComponent } from '../my-list/my-list.component';
 import { StoreService } from '../../core/services/store/store.service';
 import { FormsModule, NgForm } from '@angular/forms';
-import { List } from '../../types/types';
+import { List, Movie } from '../../types/types';
 import { SubscriptionLike } from 'rxjs';
 import { SearchComponent } from '../../core/components/search/search.component';
+import { FavouritesService } from '../../core/services/favourites/favourites.service';
 
 @Component({
   selector: 'app-home',
@@ -16,15 +17,25 @@ import { SearchComponent } from '../../core/components/search/search.component';
 })
 export class HomeComponent {
   list: List[] = [];
-  subscription!: SubscriptionLike;
+  subscription: SubscriptionLike[] = [];
   searchText = '';
+  favourites: Movie[] = [];
+  private favoriteService = inject(FavouritesService);
 
   constructor(private store: StoreService) {}
 
   ngOnInit() {
-    this.subscription = this.store.lists$.subscribe((lists) => {
-      this.list = lists;
-    });
+    this.subscription.push(
+      this.store.lists$.subscribe((lists) => {
+        this.list = lists;
+      })
+    );
+
+    this.subscription.push(
+      this.favoriteService.favourites$.subscribe((favourites) => {
+        this.favourites = favourites;
+      })
+    );
   }
 
   getSearchText(text: string) {
@@ -44,6 +55,6 @@ export class HomeComponent {
 
   ngOnDestroy() {
     console.log('Home component destroyed');
-    this.subscription.unsubscribe();
+    this.subscription.forEach((sub) => sub.unsubscribe());
   }
 }
