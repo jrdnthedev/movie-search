@@ -3,7 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { MyListComponent } from '../my-list/my-list.component';
 import { StoreService } from '../../core/services/store/store.service';
 import { FormsModule, NgForm } from '@angular/forms';
-import { List, Movie } from '../../types/types';
+import { Favourite, List, Movie } from '../../types/types';
 import { map, SubscriptionLike, take, tap } from 'rxjs';
 import { SearchComponent } from '../../core/components/search/search.component';
 import { FavouritesService } from '../../core/services/favourites/favourites.service';
@@ -19,7 +19,7 @@ export class HomeComponent {
   list: List[] = [];
   subscription: SubscriptionLike[] = [];
   searchText = '';
-  favourites: Movie[] = [];
+  favourites: Favourite[] = [];
   private favoriteService = inject(FavouritesService);
 
   constructor(private store: StoreService) {}

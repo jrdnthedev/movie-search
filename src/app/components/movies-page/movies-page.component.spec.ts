@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { MoviesPageComponent } from './movies-page.component';
-import { HttpClient } from '@angular/common/http';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClient } from '@angular/common/http';
+import { fakeAsync, tick } from '@angular/core/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 describe('MoviesPageComponent', () => {
   let component: MoviesPageComponent;
@@ -10,8 +10,8 @@ describe('MoviesPageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MoviesPageComponent, HttpClientTestingModule],
-      providers: [HttpClient],
+      imports: [MoviesPageComponent],
+      providers: [provideHttpClient(), provideHttpClientTesting()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(MoviesPageComponent);
@@ -19,18 +19,27 @@ describe('MoviesPageComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should update searchText and log the input text', () => {
-    const inputText = 'Test';
+  it('should call performSearch after 1 second when getSearchText is called', fakeAsync(() => {
+    spyOn(component, 'performSearch'); // Spy on performSearch method
 
-    spyOn(console, 'log'); // Spy on console.log
+    const mockText = 'test search';
+    component.getSearchText(mockText);
 
-    component.getSearchText(inputText);
+    // Advance time by less than debounce time and check that performSearch is not called
+    tick(500);
+    expect(component.performSearch).not.toHaveBeenCalled();
 
-    // Assert that searchText is updated correctly
-    expect(component.searchText).toBe(inputText);
+    // Advance time to exceed debounce time
+    tick(500);
+    expect(component.performSearch).toHaveBeenCalledWith(mockText);
+  }));
 
-    // Assert that console.log was called with the correct text
-    expect(console.log).toHaveBeenCalledWith('Search text: ', inputText);
+  it('should update searchText when performSearch is called', () => {
+    const mockText = 'test search';
+
+    component.performSearch(mockText);
+
+    expect(component.searchText).toBe(mockText);
   });
 
   it('should create', () => {

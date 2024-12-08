@@ -70,13 +70,6 @@ export class MoviesComponent {
   }
 
   getLists() {
-    // this.subscription.push(
-    //   this.store.getLists().subscribe((lists) => {
-    //     console.log('Lists: ', lists.items);
-    //     this.myLists = lists.items;
-    //   })
-    // );
-
     this.myLists = this.store.getLists();
   }
 

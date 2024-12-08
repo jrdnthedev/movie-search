@@ -27,6 +27,8 @@ export type Movie = {
   favourite?: boolean;
 };
 
+export type Favourite = Pick<Movie, 'Title' | 'Year' | 'Genre'>;
+
 export type List = {
   id: number;
   name: string;

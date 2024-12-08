@@ -1,96 +1,72 @@
 import { TestBed } from '@angular/core/testing';
 import {
-  HttpClientTestingModule,
   HttpTestingController,
+  provideHttpClientTesting,
 } from '@angular/common/http/testing';
 import { MoviesService } from './movies.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, provideHttpClient } from '@angular/common/http';
 
 describe('MoviesService', () => {
   let service: MoviesService;
   let httpTestingController: HttpTestingController;
-  const mockMoveData = {
-    Title: 'Titanic',
-    Year: '1997',
-    Rated: 'PG-13',
-    Released: '19 Dec 1997',
-    Runtime: '194 min',
-    Genre: 'Drama, Romance',
-    Director: 'James Cameron',
-    Writer: 'James Cameron',
-    Actors: 'Leonardo DiCaprio, Kate Winslet, Billy Zane',
-    Plot: 'A seventeen-year-old aristocrat falls in love with a kind but poor artist aboard the luxurious, ill-fated R.M.S. Titanic.',
-    Language: 'English, Swedish, Italian, French',
-    Country: 'United States, Mexico',
-    Awards: 'Won 11 Oscars. 126 wins & 83 nominations total',
-    Poster:
-      'https://m.media-amazon.com/images/M/MV5BMDdmZGU3NDQtY2E5My00ZTliLWIzOTUtMTY4ZGI1YjdiNjk3XkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_SX300.jpg',
-    Ratings: [
-      { Source: 'Internet Movie Database', Value: '7.9/10' },
-      { Source: 'Rotten Tomatoes', Value: '88%' },
-      { Source: 'Metacritic', Value: '75/100' },
-    ],
-    Metascore: '75',
-    imdbRating: '7.9',
-    imdbVotes: '1,298,561',
-    imdbID: 'tt0120338',
-    Type: 'movie',
-    DVD: 'N/A',
-    BoxOffice: '$674,292,608',
-    Production: 'N/A',
-    Website: 'N/A',
-    Response: 'True',
-  };
-  const movieTitle = 'titanic';
+  let httpClientSpy: jasmine.SpyObj<HttpClient>;
+  let cacheSpy: jasmine.Spy;
+
   const apiKey = 'a658a848';
-  const imdbId = 'tt0120338';
+  const title = 'Inception';
+  const mockData = { Title: 'Inception', Year: '2010' };
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
-      providers: [MoviesService, HttpClient],
+      imports: [],
+      providers: [
+        MoviesService,
+        provideHttpClient(),
+        provideHttpClientTesting(),
+      ],
     });
+    httpClientSpy = jasmine.createSpyObj('HttpClient', ['get']);
     service = TestBed.inject(MoviesService);
     httpTestingController = TestBed.inject(HttpTestingController);
+    cacheSpy = spyOn(service['cache'], 'get').and.callThrough();
+    spyOn(service['cache'], 'set').and.callThrough();
   });
 
-  it('should fetch movies based on title', () => {
-    // Replace with actual key or mock value
+  afterEach(() => {
+    httpTestingController.verify(); // Ensures no unmatched HTTP requests
+  });
 
+  it('should return cached data if available', () => {
+    service['cache'].set(title, mockData);
     // Call the service method
-    service.getMovies(movieTitle).subscribe((response) => {
-      // Expect the response to match the mock data
-      expect(response).toEqual(mockMoveData);
+    service.getMovies(title).subscribe({
+      next: (response) => {
+        // Expect the response to match the mock data
+        expect(response).withContext('expected movies').toEqual(mockData);
+        expect(cacheSpy).toHaveBeenCalledWith(title);
+      },
+      error: (error) => {
+        console.error(error);
+      },
     });
 
-    // Expect an HTTP GET request to the correct URL
-    const req = httpTestingController.expectOne(
-      `https://www.omdbapi.com/?apikey=${apiKey}&t=${movieTitle}`
+    httpTestingController.expectNone(
+      `https://www.omdbapi.com/?apikey=${apiKey}&t=${title}`
     );
-
-    // Ensure that it was a GET request
-    expect(req.request.method).toBe('GET');
-
-    // Respond with the mock data
-    req.flush(mockMoveData);
   });
 
-  it('should fetch movies based on imdb id', () => {
-    service.getMoviesByImdbId(imdbId).subscribe((response) => {
-      // Expect the response to match the mock data
-      expect(response).toEqual(mockMoveData);
+  it('should fetch data via HTTP if not cached and cache the result', () => {
+    service.getMovies(title).subscribe((data) => {
+      expect(data).toEqual(mockData);
+      expect(service['cache'].set).toHaveBeenCalledWith(title, mockData); // Verify cache.set was called
     });
 
-    // Expect an HTTP GET request to the correct URL
+    // Simulate HTTP request
     const req = httpTestingController.expectOne(
-      `https://www.omdbapi.com/?apikey=${apiKey}&i=${imdbId}`
+      `https://www.omdbapi.com/?apikey=${apiKey}&t=${title}`
     );
-
-    // Ensure that it was a GET request
     expect(req.request.method).toBe('GET');
-
-    // Respond with the mock data
-    req.flush(mockMoveData);
+    req.flush(mockData); // Respond with mock data
   });
 
   it('should be created', () => {

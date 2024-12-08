@@ -23,15 +23,15 @@ describe('StoreService', () => {
     };
 
     // Set up initial value
-    service['listsSubject'].next({ items: initialLists });
+    service['listsSubject'].next(initialLists);
 
     // Call the addList function
     service.addList(newList);
 
     // Subscribe to the observable and check the result
     service.lists$.subscribe((listsState) => {
-      expect(listsState.items.length).toBe(2);
-      expect(listsState.items).toContain(newList);
+      expect(listsState.length).toBe(2);
+      expect(listsState).toContain(newList);
     });
   });
 
@@ -49,16 +49,16 @@ describe('StoreService', () => {
     ];
 
     // Set up initial value
-    service['listsSubject'].next({ items: initialLists });
+    service['listsSubject'].next(initialLists);
 
     // Call the removeList function
     service.removeList(listToRemoveId);
 
     // Subscribe to the observable and check the result
     service.lists$.subscribe((listsState) => {
-      expect(listsState.items.length).toBe(2);
+      expect(listsState.length).toBe(2);
       expect(
-        listsState.items.find((list) => list.id === listToRemoveId)
+        listsState.find((list) => list.id === listToRemoveId)
       ).toBeUndefined();
     });
   });
@@ -100,13 +100,13 @@ describe('StoreService', () => {
       Response: 'True',
     };
 
-    service['listsSubject'].next({ items: initialLists });
+    service['listsSubject'].next(initialLists);
 
     service.addItemToList(1, newItem);
 
     service.lists$.subscribe((listsState) => {
-      expect(listsState.items[0].items.length).toBe(1);
-      expect(listsState.items[0].items).toContain(newItem);
+      expect(listsState[0].items.length).toBe(1);
+      expect(listsState[0].items).toContain(newItem);
     });
   });
 
@@ -260,14 +260,14 @@ describe('StoreService', () => {
     ];
 
     // Set up initial state
-    service['listsSubject'].next({ items: initialLists });
+    service['listsSubject'].next(initialLists);
 
     // Call the removeItemFromList function
     service.removeItemFromList(listIdToModify, itemTitleToRemove);
 
     // Subscribe to the observable and check the result
     service.lists$.subscribe((listsState) => {
-      const modifiedList = listsState.items.find(
+      const modifiedList = listsState.find(
         (list) => list.id === listIdToModify
       );
       const remainingItems = modifiedList?.items;

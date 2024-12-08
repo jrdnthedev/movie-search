@@ -28,7 +28,7 @@ export class MoviesService {
       );
   }
 
-  getMoviesByImdbId(id: string): Observable<any> {
-    return this.http.get(`https://www.omdbapi.com/?apikey=${this.key}&i=${id}`);
-  }
+  // getMoviesByImdbId(id: string): Observable<any> {
+  //   return this.http.get(`https://www.omdbapi.com/?apikey=${this.key}&i=${id}`);
+  // }
 }
