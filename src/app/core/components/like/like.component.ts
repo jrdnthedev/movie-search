@@ -3,11 +3,10 @@ import { Movie } from '../../../types/types';
 import { FavouritesService } from '../../services/favourites/favourites.service';
 
 @Component({
-  selector: 'app-like',
-  standalone: true,
-  imports: [],
-  templateUrl: './like.component.html',
-  styleUrl: './like.component.scss',
+    selector: 'app-like',
+    imports: [],
+    templateUrl: './like.component.html',
+    styleUrl: './like.component.scss'
 })
 export class LikeComponent {
   isLiked = false;

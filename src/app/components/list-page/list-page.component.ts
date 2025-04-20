@@ -5,11 +5,10 @@ import { SubscriptionLike } from 'rxjs';
 import { LikeComponent } from '../../core/components/like/like.component';
 
 @Component({
-  selector: 'app-list-page',
-  standalone: true,
-  imports: [LikeComponent],
-  templateUrl: './list-page.component.html',
-  styleUrl: './list-page.component.scss',
+    selector: 'app-list-page',
+    imports: [LikeComponent],
+    templateUrl: './list-page.component.html',
+    styleUrl: './list-page.component.scss'
 })
 export class ListPageComponent {
   list: List[] = [];

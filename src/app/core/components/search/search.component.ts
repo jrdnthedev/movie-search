@@ -2,11 +2,10 @@ import { Component, Input, output } from '@angular/core';
 import { debounceTime, Subject } from 'rxjs';
 
 @Component({
-  selector: 'app-search',
-  standalone: true,
-  imports: [],
-  templateUrl: './search.component.html',
-  styleUrl: './search.component.scss',
+    selector: 'app-search',
+    imports: [],
+    templateUrl: './search.component.html',
+    styleUrl: './search.component.scss'
 })
 export class SearchComponent {
   searchText = output<string>();

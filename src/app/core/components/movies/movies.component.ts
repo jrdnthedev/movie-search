@@ -7,11 +7,10 @@ import { StoreService } from '../../services/store/store.service';
 import { AddToListComponent } from '../add-to-list/add-to-list.component';
 
 @Component({
-  selector: 'app-movies',
-  standalone: true,
-  imports: [],
-  templateUrl: './movies.component.html',
-  styleUrl: './movies.component.scss',
+    selector: 'app-movies',
+    imports: [],
+    templateUrl: './movies.component.html',
+    styleUrl: './movies.component.scss'
 })
 export class MoviesComponent {
   subscription: SubscriptionLike[] = [];

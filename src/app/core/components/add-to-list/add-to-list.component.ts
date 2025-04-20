@@ -4,11 +4,10 @@ import { StoreService } from '../../services/store/store.service';
 import { SubscriptionLike } from 'rxjs';
 
 @Component({
-  selector: 'app-add-to-list',
-  standalone: true,
-  imports: [],
-  templateUrl: './add-to-list.component.html',
-  styleUrl: './add-to-list.component.scss',
+    selector: 'app-add-to-list',
+    imports: [],
+    templateUrl: './add-to-list.component.html',
+    styleUrl: './add-to-list.component.scss'
 })
 export class AddToListComponent {
   myLists: List[] = [];

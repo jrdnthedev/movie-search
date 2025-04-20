@@ -9,11 +9,10 @@ import { SearchComponent } from '../../core/components/search/search.component';
 import { FavouritesService } from '../../core/services/favourites/favourites.service';
 
 @Component({
-  selector: 'app-home',
-  standalone: true,
-  imports: [MyListComponent, FormsModule, SearchComponent],
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.scss',
+    selector: 'app-home',
+    imports: [MyListComponent, FormsModule, SearchComponent],
+    templateUrl: './home.component.html',
+    styleUrl: './home.component.scss'
 })
 export class HomeComponent {
   list: List[] = [];
