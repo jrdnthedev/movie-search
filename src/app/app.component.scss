@@ -1,46 +1,4 @@
-main {
-  flex: 1 0 auto;
-  background-color: var(--light-color);
-}
-
-footer {
-  flex-shrink: 0;
-}
-
-#wrapper {
-  display: flex;
-  flex-direction: column;
+body,
+html {
   height: 100%;
-}
-
-header,
-footer {
-  background-color: var(--primary-color);
-  color: var(--alternate-color);
-  padding: 20px 10px;
-}
-
-header,
-footer {
-  text-transform: uppercase;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-  li {
-    padding: 10px;
-    display: inline-block;
-    &:last-child {
-      border-bottom: none;
-    }
-    a {
-      color: var(--alternate-color);
-      font-style: italic;
-      text-decoration: none;
-      &.active {
-        text-decoration: underline;
-      }
-    }
-  }
 }

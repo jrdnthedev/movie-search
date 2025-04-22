@@ -7,10 +7,10 @@ import { StoreService } from '../../services/store/store.service';
 import { AddToListComponent } from '../add-to-list/add-to-list.component';
 
 @Component({
-    selector: 'app-movies',
-    imports: [],
-    templateUrl: './movies.component.html',
-    styleUrl: './movies.component.scss'
+  selector: 'app-movies',
+  imports: [],
+  templateUrl: './movies.component.html',
+  styleUrl: './movies.component.scss',
 })
 export class MoviesComponent {
   subscription: SubscriptionLike[] = [];
@@ -64,6 +64,7 @@ export class MoviesComponent {
         )
         .subscribe((data: Movie) => {
           this.movie = data;
+          console.log('Movies found', data);
         })
     );
   }
