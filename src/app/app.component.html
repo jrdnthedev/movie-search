@@ -85,12 +85,12 @@
       </div>
     </div>
   </nav>
-  <main class="main">
+  <main class="main px-4">
     <button (click)="addMovieToCollection()">add movie</button>
     <button (click)="removeMovieFromCollection()">remove movie</button>
     <button (click)="addCollection()">add collection</button>
     <button (click)="renameCollection()">renameCollection collection</button>
     <router-outlet />
+    <app-collections></app-collections>
   </main>
-  <app-collections></app-collections>
 </div>
