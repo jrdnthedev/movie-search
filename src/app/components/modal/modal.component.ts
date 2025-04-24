@@ -7,10 +7,11 @@ import {
   Output,
   TemplateRef,
 } from '@angular/core';
+import { KeytrapDirective } from '../../directives/keytrap/keytrap.directive';
 
 @Component({
   selector: 'app-modal',
-  imports: [CommonModule],
+  imports: [CommonModule, KeytrapDirective],
   templateUrl: './modal.component.html',
   styleUrl: './modal.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
