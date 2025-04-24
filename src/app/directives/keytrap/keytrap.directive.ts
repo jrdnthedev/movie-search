@@ -18,7 +18,6 @@ export class KeytrapDirective {
     const elements: NodeListOf<HTMLElement> = container!.querySelectorAll(
       'a, input:not([disabled]), button, select'
     );
-    console.log('elements', elements);
     elements[0].focus();
     elements.forEach((element) => {
       element.addEventListener('keydown', (event) => {

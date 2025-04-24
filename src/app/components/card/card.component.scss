@@ -1,0 +1,7 @@
+::ng-deep p {
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: -webkit-fill-available;
+}

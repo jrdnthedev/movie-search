@@ -30,25 +30,23 @@
     </button>
   </div>
 </div>
-
+@if(!isCollectionEmpty){
 <div class="grid grid-cols sm:grid-cols-2 lg:grid-cols-3 gap-4">
+  @for(item of (collections$ | async); track $index) {
   <app-card>
-    <a href="#">
-      <h5
-        class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
-      >
-        Noteworthy technology acquisitions 2021
-      </h5>
-    </a>
+    <h5
+      class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+    >
+      {{ item.title }}
+    </h5>
     <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-      Here are the biggest enterprise technology acquisitions of 2021 so far, in
-      reverse chronological order.
+      {{ item.description }}
     </p>
     <a
       href="#"
       class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
     >
-      Read more
+      View
       <svg
         class="rtl:rotate-180 w-3.5 h-3.5 ms-2"
         aria-hidden="true"
@@ -66,217 +64,76 @@
       </svg>
     </a>
   </app-card>
-
-  <app-card>
-    <a href="#">
-      <h5
-        class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
-      >
-        Noteworthy technology acquisitions 2021
-      </h5>
-    </a>
-    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-      Here are the biggest enterprise technology acquisitions of 2021 so far, in
-      reverse chronological order.
-    </p>
-    <a
-      href="#"
-      class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-    >
-      Read more
-      <svg
-        class="rtl:rotate-180 w-3.5 h-3.5 ms-2"
-        aria-hidden="true"
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 14 10"
-      >
-        <path
-          stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M1 5h12m0 0L9 1m4 4L9 9"
-        />
-      </svg>
-    </a>
-  </app-card>
-
-  <app-card>
-    <a href="#">
-      <h5
-        class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
-      >
-        Noteworthy technology acquisitions 2021
-      </h5>
-    </a>
-    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-      Here are the biggest enterprise technology acquisitions of 2021 so far, in
-      reverse chronological order.
-    </p>
-    <a
-      href="#"
-      class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-    >
-      Read more
-      <svg
-        class="rtl:rotate-180 w-3.5 h-3.5 ms-2"
-        aria-hidden="true"
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 14 10"
-      >
-        <path
-          stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M1 5h12m0 0L9 1m4 4L9 9"
-        />
-      </svg>
-    </a>
-  </app-card>
-
-  <app-card>
-    <a href="#">
-      <h5
-        class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
-      >
-        Noteworthy technology acquisitions 2021
-      </h5>
-    </a>
-    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-      Here are the biggest enterprise technology acquisitions of 2021 so far, in
-      reverse chronological order.
-    </p>
-    <a
-      href="#"
-      class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-    >
-      Read more
-      <svg
-        class="rtl:rotate-180 w-3.5 h-3.5 ms-2"
-        aria-hidden="true"
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 14 10"
-      >
-        <path
-          stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M1 5h12m0 0L9 1m4 4L9 9"
-        />
-      </svg>
-    </a>
-  </app-card>
-
-  <app-card>
-    <a href="#">
-      <h5
-        class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
-      >
-        Noteworthy technology acquisitions 2021
-      </h5>
-    </a>
-    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-      Here are the biggest enterprise technology acquisitions of 2021 so far, in
-      reverse chronological order.
-    </p>
-    <a
-      href="#"
-      class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-    >
-      Read more
-      <svg
-        class="rtl:rotate-180 w-3.5 h-3.5 ms-2"
-        aria-hidden="true"
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 14 10"
-      >
-        <path
-          stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M1 5h12m0 0L9 1m4 4L9 9"
-        />
-      </svg>
-    </a>
-  </app-card>
+  }
 </div>
+} @else {
+<section class="bg-white dark:bg-gray-900">
+  <div
+    class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 grid lg:grid-cols-2 gap-8 lg:gap-16"
+  >
+    <div class="flex flex-col justify-center">
+      <h1
+        class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white"
+      >
+        Your collections are empty
+      </h1>
+      <p
+        class="mb-8 text-lg font-normal text-gray-500 lg:text-xl dark:text-gray-400"
+      >
+        your collections are empty. Please create a collection to start adding
+        items to it.
+      </p>
+    </div>
+  </div>
+</section>
+}
 
 <ng-container #modalContainer></ng-container>
 <ng-template #formTemplate>
   <div class="p-4 md:p-5">
-    <form class="space-y-4" action="#">
+    <form
+      class="space-y-4"
+      [formGroup]="collectionFormGroup"
+      (ngSubmit)="createCollection($event)"
+    >
       <div>
         <label
-          for="email"
+          for="title"
           class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-          >Your email</label
+          >Title</label
         >
         <input
-          type="email"
-          name="email"
-          id="email"
+          type="text"
+          name="title"
+          id="title"
           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-          placeholder="name@company.com"
+          placeholder="comedies"
+          formControlName="title"
           required
         />
       </div>
       <div>
         <label
-          for="password"
+          for="description"
           class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-          >Your password</label
+          >Description</label
         >
         <input
-          type="password"
-          name="password"
-          id="password"
-          placeholder="••••••••"
+          type="text"
+          name="description"
+          id="description"
           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+          placeholder="content of the collection"
+          formControlName="description"
           required
         />
-      </div>
-      <div class="flex justify-between">
-        <div class="flex items-start">
-          <div class="flex items-center h-5">
-            <input
-              id="remember"
-              type="checkbox"
-              value=""
-              class="w-4 h-4 border border-gray-300 rounded-sm bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-600 dark:border-gray-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800"
-              required
-            />
-          </div>
-          <label
-            for="remember"
-            class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-            >Remember me</label
-          >
-        </div>
-        <a
-          href="#"
-          class="text-sm text-blue-700 hover:underline dark:text-blue-500"
-          >Lost Password?</a
-        >
       </div>
       <button
         type="submit"
         class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
       >
-        Login to your account
+        Create Collection
       </button>
-      <div class="text-sm font-medium text-gray-500 dark:text-gray-300">
-        Not registered?
-        <a href="#" class="text-blue-700 hover:underline dark:text-blue-500"
-          >Create account</a
-        >
-      </div>
     </form>
   </div>
 </ng-template>

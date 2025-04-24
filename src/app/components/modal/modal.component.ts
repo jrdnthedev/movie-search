@@ -19,7 +19,7 @@ import { KeytrapDirective } from '../../directives/keytrap/keytrap.directive';
 export class ModalComponent {
   @Output() destroy = new EventEmitter<void>();
   header = 'Modal Header';
-  @Input() projectedContent!: TemplateRef<any>;
+  @Input() projectedContent!: TemplateRef<HTMLElement>;
   closeModal() {
     this.destroy.emit();
   }

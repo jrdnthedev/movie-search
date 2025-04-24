@@ -4,11 +4,9 @@ import { collectionsActions } from './state.actions';
 
 interface State {
   collections: Collection[];
-  error: string | null;
 }
-export const initialState: State = {
+const initialState: State = {
   collections: [],
-  error: null,
 };
 
 export const stateReducer = createReducer(
