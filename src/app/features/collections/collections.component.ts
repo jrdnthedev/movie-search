@@ -3,6 +3,7 @@ import {
   ComponentRef,
   CUSTOM_ELEMENTS_SCHEMA,
   inject,
+  signal,
   TemplateRef,
   ViewChild,
   ViewContainerRef,
@@ -22,10 +23,18 @@ import {
   selectAllCollections,
   selectCollectionCount,
 } from '../../state/state.selectors';
+import { RouterLink } from '@angular/router';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-collections',
-  imports: [CardComponent, FormsModule, ReactiveFormsModule, CommonModule],
+  imports: [
+    CardComponent,
+    FormsModule,
+    ReactiveFormsModule,
+    CommonModule,
+    RouterLink,
+  ],
   templateUrl: './collections.component.html',
   styleUrl: './collections.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -40,19 +49,31 @@ export class CollectionsComponent {
   collectionFormGroup!: FormGroup;
   isCollectionEmpty = true;
   collections$ = this.store.select(selectAllCollections);
+  private collectionCount = signal(0);
+  private destroy$ = new Subject<void>();
 
   ngOnInit() {
     this.collectionFormGroup = new FormGroup({
       title: new FormControl('', [Validators.required]),
       description: new FormControl('', [Validators.required]),
     });
+
+    this.store
+      .select(selectCollectionCount)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((count: number) => {
+        this.collectionCount.set(count);
+        this.isCollectionEmpty = count === 0;
+      });
   }
 
   openModal() {
     this.modalContainer.clear();
     this.modalRef = this.modalContainer.createComponent(ModalComponent);
     this.modalRef.instance.projectedContent = this.formTemplate;
-    this.modalRef.instance.destroy.subscribe(() => this.closeModal());
+    this.modalRef.instance.destroy
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(() => this.closeModal());
   }
 
   closeModal() {
@@ -61,24 +82,22 @@ export class CollectionsComponent {
 
   createCollection(e: Event) {
     e.preventDefault();
-    let id = 0;
-    this.store
-      .select(selectCollectionCount)
-      .subscribe((count: number) => (id = count + 1));
+
     this.store.dispatch({
       type: '[Collections] Add Collection',
       collections: {
         list: [],
         title: this.collectionFormGroup.value.title,
         description: this.collectionFormGroup.value.description,
-        id: id,
+        id: this.collectionCount() + 1,
       },
     });
-    // this.collections$.subscribe((data) => {
-    //   console.log('Collections', data);
-    // });
-    this.isCollectionEmpty = false;
     this.collectionFormGroup.reset();
     this.closeModal();
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }
