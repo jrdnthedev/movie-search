@@ -1,11 +1,10 @@
 import { Component, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { CollectionsComponent } from './features/collections/collections.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, CollectionsComponent, RouterLinkActive],
+  imports: [RouterOutlet, RouterLinkActive],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   standalone: true,
