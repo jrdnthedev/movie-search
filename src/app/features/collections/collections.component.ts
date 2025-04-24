@@ -24,7 +24,7 @@ import {
   selectCollectionCount,
 } from '../../state/state.selectors';
 import { RouterLink } from '@angular/router';
-import { Subject, takeUntil } from 'rxjs';
+import { catchError, Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-collections',
@@ -60,7 +60,10 @@ export class CollectionsComponent {
 
     this.store
       .select(selectCollectionCount)
-      .pipe(takeUntil(this.destroy$))
+      .pipe(
+        catchError((_, caught) => caught),
+        takeUntil(this.destroy$)
+      )
       .subscribe((count: number) => {
         this.collectionCount.set(count);
         this.isCollectionEmpty = count === 0;
