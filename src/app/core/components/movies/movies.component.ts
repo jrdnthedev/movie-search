@@ -1,46 +1,51 @@
-import { Component, Input, ViewContainerRef } from '@angular/core';
+import { Component, inject, Input, ViewContainerRef } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { MoviesService } from '../../services/movies/movies.service';
 import { filter, SubscriptionLike } from 'rxjs';
 import { List, Movie } from '../../../types/types';
 import { StoreService } from '../../services/store/store.service';
 import { AddToListComponent } from '../add-to-list/add-to-list.component';
+import { Store } from '@ngrx/store';
+import { selectAllCollections } from '../../../state/state.selectors';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-movies',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './movies.component.html',
   styleUrl: './movies.component.scss',
+  standalone: true,
 })
 export class MoviesComponent {
+  private store = inject(Store);
+  collections$ = this.store.select(selectAllCollections);
   subscription: SubscriptionLike[] = [];
   movie!: Movie;
   myLists: List[] = [];
   @Input() movieTitle = '';
-
-  constructor(
-    private movies: MoviesService,
-    private store: StoreService,
-    public vcr: ViewContainerRef
-  ) {}
+  showDropdown = false;
+  constructor(private movies: MoviesService, public vcr: ViewContainerRef) {}
 
   ngOnInit() {
     console.log('MoviesComponent initialized');
-    this.getLists();
   }
 
   ngOnChanges() {
     this.searchMovies(this.movieTitle);
   }
 
-  addToList(data: Movie) {
-    if (this.myLists.length) {
-      const ref = this.vcr.createComponent(AddToListComponent);
-      ref.setInput('movie', data);
-      ref.setInput('compRef', ref);
-    } else {
-      console.log('No lists available');
-    }
+  addMovieToCollection(movie: Movie, listId: number) {
+    this.store.dispatch({
+      type: '[Collections] Add Movie To Collection',
+      id: listId,
+      collections: {
+        Title: movie.Title,
+        Year: movie.Year,
+        imdbID: movie.imdbID,
+        Type: movie.Type,
+        Poster: movie.Poster,
+      },
+    });
   }
 
   searchMovies(text: string) {
@@ -67,10 +72,6 @@ export class MoviesComponent {
           console.log('Movies found', data);
         })
     );
-  }
-
-  getLists() {
-    this.myLists = this.store.getLists();
   }
 
   ngOnDestroy() {

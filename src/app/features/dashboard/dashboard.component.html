@@ -1,1 +1,10 @@
-<app-collections></app-collections>
+<section class="mb-8 p-4">
+  <div class="mb-4">
+    <app-search (searchText)="getSearchText($event)"></app-search>
+  </div>
+  <app-movies [movieTitle]="searchText"></app-movies>
+</section>
+
+<section>
+  <app-collections></app-collections>
+</section>

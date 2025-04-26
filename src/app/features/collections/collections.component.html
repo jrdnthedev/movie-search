@@ -42,6 +42,9 @@
     <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
       {{ item.description }}
     </p>
+    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+      count: {{ item.list.length }}
+    </p>
     <a
       routerLink="/details/{{ item.id }}"
       class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
@@ -78,7 +81,7 @@
         Your collections are empty
       </h1>
       <p
-        class="mb-8 text-lg font-normal text-gray-500 lg:text-xl dark:text-gray-400"
+        class="text-lg font-normal text-gray-500 lg:text-xl dark:text-gray-400"
       >
         your collections are empty. Please create a collection to start adding
         items to it.

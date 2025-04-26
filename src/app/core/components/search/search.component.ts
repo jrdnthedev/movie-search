@@ -10,7 +10,6 @@ import { debounceTime, Subject } from 'rxjs';
 })
 export class SearchComponent {
   searchText = output<string>();
-  @Input() placeholderText = 'Search movies...';
   private searchSubject = new Subject<string>();
 
   ngOnInit() {
