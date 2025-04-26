@@ -1,4 +1,4 @@
-#movie-details {
+#media-details {
   display: flex;
   flex-direction: column;
   & > div {
@@ -6,7 +6,7 @@
   }
 }
 
-#movie-poster {
+#media-poster {
   height: 50vh;
   background-size: cover;
   background-repeat: no-repeat;

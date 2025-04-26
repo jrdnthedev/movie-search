@@ -17,7 +17,7 @@ export class MediaComponent {
   private store = inject(Store);
   collections$ = this.store.select(selectAllCollections);
   subscription: SubscriptionLike[] = [];
-  movie!: Media;
+  media!: Media;
   @Input() movieTitle = '';
   showDropdown = false;
   constructor(private movies: MoviesService, public vcr: ViewContainerRef) {}
@@ -30,16 +30,16 @@ export class MediaComponent {
     this.searchMovies(this.movieTitle);
   }
 
-  addMovieToCollection(movie: Media, listId: number) {
+  addMovieToCollection(media: Media, listId: number) {
     this.store.dispatch({
       type: '[Collections] Add Movie To Collection',
       id: listId,
       collections: {
-        Title: movie.Title,
-        Year: movie.Year,
-        imdbID: movie.imdbID,
-        Type: movie.Type,
-        Poster: movie.Poster,
+        Title: media.Title,
+        Year: media.Year,
+        imdbID: media.imdbID,
+        Type: media.Type,
+        Poster: media.Poster,
       },
     });
   }
@@ -64,7 +64,7 @@ export class MediaComponent {
           })
         )
         .subscribe((data: Media) => {
-          this.movie = data;
+          this.media = data;
           console.log('Movies found', data);
         })
     );

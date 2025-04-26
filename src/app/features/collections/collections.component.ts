@@ -51,6 +51,7 @@ export class CollectionsComponent {
   collections$ = this.store.select(selectAllCollections);
   private collectionCount = signal(0);
   private destroy$ = new Subject<void>();
+  menuStates: boolean[] = [];
 
   ngOnInit() {
     this.collectionFormGroup = new FormGroup({
@@ -67,6 +68,15 @@ export class CollectionsComponent {
       .subscribe((count: number) => {
         this.collectionCount.set(count);
         this.isCollectionEmpty = count === 0;
+      });
+
+    this.collections$
+      .pipe(
+        catchError((_, caught) => caught),
+        takeUntil(this.destroy$)
+      )
+      .subscribe((collections) => {
+        this.menuStates = new Array(collections.length).fill(false);
       });
   }
 
@@ -99,6 +109,9 @@ export class CollectionsComponent {
     this.closeModal();
   }
 
+  toggleDropdown(index: number) {
+    this.menuStates[index] = !this.menuStates[index];
+  }
   ngOnDestroy() {
     this.destroy$.next();
     this.destroy$.complete();

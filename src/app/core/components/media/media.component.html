@@ -1,9 +1,9 @@
-@if(movie) {
-<div id="movie-details">
+@if(media) {
+<div id="media-details">
   <figure>
     <div
-      [style]="'background-image: url(' + movie.Poster + ')'"
-      id="movie-poster"
+      [style]="'background-image: url(' + media.Poster + ')'"
+      id="media-poster"
     ></div>
     <figcaption>
       <div>
@@ -48,7 +48,7 @@
             @for(item of (collections$ | async); track $index) {
             <li
               (click)="
-                addMovieToCollection(movie, item.id);
+                addMovieToCollection(media, item.id);
                 showDropdown = !showDropdown
               "
             >
@@ -61,18 +61,18 @@
           </ul>
         </div>
       </div>
-      <h4>{{ movie.Title }}</h4>
-      <p>{{ movie.Year }}</p>
-      <p>{{ movie.Rated }}</p>
-      <p>{{ movie.Runtime }}</p>
-      <p>{{ movie.Genre }}</p>
-      <p>{{ movie.Director }}</p>
-      <p>{{ movie.Actors }}</p>
-      <p>{{ movie.Language }}</p>
-      <p>{{ movie.Country }}</p>
-      <p>{{ movie.Awards }}</p>
-      <p>{{ movie.BoxOffice }}</p>
-      <p>{{ movie.imdbRating }}</p>
+      <h4>{{ media.Title }}</h4>
+      <p>{{ media.Year }}</p>
+      <p>{{ media.Rated }}</p>
+      <p>{{ media.Runtime }}</p>
+      <p>{{ media.Genre }}</p>
+      <p>{{ media.Director }}</p>
+      <p>{{ media.Actors }}</p>
+      <p>{{ media.Language }}</p>
+      <p>{{ media.Country }}</p>
+      <p>{{ media.Awards }}</p>
+      <p>{{ media.BoxOffice }}</p>
+      <p>{{ media.imdbRating }}</p>
     </figcaption>
   </figure>
 </div>
