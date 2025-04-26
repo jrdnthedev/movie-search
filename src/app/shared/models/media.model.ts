@@ -12,4 +12,11 @@ export interface Media {
   totalSeasons?: string;
   imdbID: string;
   Type: string;
+  Poster: string;
+  Response: string;
+  Language: string;
+  Country: string;
+  Awards: string;
+  imdbRating: string;
+  BoxOffice: string;
 }

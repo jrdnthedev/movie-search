@@ -1,13 +1,10 @@
 import { Component, inject, Input, ViewContainerRef } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
 import { MoviesService } from '../../services/movies/movies.service';
 import { filter, SubscriptionLike } from 'rxjs';
-import { List, Movie } from '../../../types/types';
-import { StoreService } from '../../services/store/store.service';
-import { AddToListComponent } from '../add-to-list/add-to-list.component';
 import { Store } from '@ngrx/store';
 import { selectAllCollections } from '../../../state/state.selectors';
 import { CommonModule } from '@angular/common';
+import { Media } from '../../../shared/models/media.model';
 
 @Component({
   selector: 'app-movies',
@@ -20,8 +17,7 @@ export class MoviesComponent {
   private store = inject(Store);
   collections$ = this.store.select(selectAllCollections);
   subscription: SubscriptionLike[] = [];
-  movie!: Movie;
-  myLists: List[] = [];
+  movie!: Media;
   @Input() movieTitle = '';
   showDropdown = false;
   constructor(private movies: MoviesService, public vcr: ViewContainerRef) {}
@@ -34,7 +30,7 @@ export class MoviesComponent {
     this.searchMovies(this.movieTitle);
   }
 
-  addMovieToCollection(movie: Movie, listId: number) {
+  addMovieToCollection(movie: Media, listId: number) {
     this.store.dispatch({
       type: '[Collections] Add Movie To Collection',
       id: listId,
@@ -58,7 +54,7 @@ export class MoviesComponent {
       this.movies
         .getMovies(text)
         .pipe(
-          filter((data: Movie) => {
+          filter((data: Media) => {
             if (data.Response === 'True') {
               return true;
             } else {
@@ -67,7 +63,7 @@ export class MoviesComponent {
             }
           })
         )
-        .subscribe((data: Movie) => {
+        .subscribe((data: Media) => {
           this.movie = data;
           console.log('Movies found', data);
         })
