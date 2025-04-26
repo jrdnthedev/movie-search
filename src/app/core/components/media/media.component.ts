@@ -7,13 +7,13 @@ import { CommonModule } from '@angular/common';
 import { Media } from '../../../shared/models/media.model';
 
 @Component({
-  selector: 'app-movies',
+  selector: 'app-media',
   imports: [CommonModule],
-  templateUrl: './movies.component.html',
-  styleUrl: './movies.component.scss',
+  templateUrl: './media.component.html',
+  styleUrl: './media.component.scss',
   standalone: true,
 })
-export class MoviesComponent {
+export class MediaComponent {
   private store = inject(Store);
   collections$ = this.store.select(selectAllCollections);
   subscription: SubscriptionLike[] = [];

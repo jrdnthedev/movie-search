@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { CollectionsComponent } from '../collections/collections.component';
 import { SearchComponent } from '../../core/components/search/search.component';
-import { MoviesComponent } from '../../core/components/movies/movies.component';
+import { MediaComponent } from '../../core/components/media/media.component';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [CollectionsComponent, SearchComponent, MoviesComponent],
+  imports: [CollectionsComponent, SearchComponent, MediaComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
 })
