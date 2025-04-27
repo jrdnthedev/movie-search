@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { selectCollectionById } from '../../state/state.selectors';
 import { Observable } from 'rxjs';
@@ -7,12 +7,12 @@ import { CommonModule } from '@angular/common';
 import { Collection } from '../../shared/models/collection.model';
 
 @Component({
-  selector: 'app-detail-page',
-  imports: [CommonModule],
-  templateUrl: './detail-page.component.html',
-  styleUrl: './detail-page.component.scss',
+  selector: 'app-collection-detail-page',
+  imports: [CommonModule, RouterLink],
+  templateUrl: './collection-detail-page.component.html',
+  styleUrl: './collection-detail-page.component.scss',
 })
-export class DetailPageComponent {
+export class CollectionDetailPageComponent {
   itemId: string | null = null;
   private readonly route = inject(ActivatedRoute);
   private store = inject(Store);

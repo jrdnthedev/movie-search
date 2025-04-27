@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { DashboardComponent } from './features/dashboard/dashboard.component';
-import { DetailPageComponent } from './features/detail-page/detail-page.component';
+import { CollectionDetailPageComponent } from './features/collection-detail-page/collection-detail-page.component';
+import { MediaDetailsComponent } from './features/media-details/media-details.component';
 
 export const routes: Routes = [
   {
@@ -8,7 +9,11 @@ export const routes: Routes = [
     component: DashboardComponent,
   },
   {
-    path: 'details/:id',
-    component: DetailPageComponent,
+    path: 'collection-details/:id',
+    component: CollectionDetailPageComponent,
+  },
+  {
+    path: 'media-details/:id',
+    component: MediaDetailsComponent,
   },
 ];
