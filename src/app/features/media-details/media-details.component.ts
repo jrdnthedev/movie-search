@@ -1,5 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Media } from '../../shared/models/media.model';
+import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-media-details',
@@ -10,6 +13,8 @@ import { ActivatedRoute } from '@angular/router';
 export class MediaDetailsComponent {
   itemId: string | null = null;
   private readonly route = inject(ActivatedRoute);
+  private store = inject(Store);
+  media$!: Observable<Media>;
 
   ngOnInit() {
     this.route.paramMap.subscribe((params) => {
